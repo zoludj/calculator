@@ -5,10 +5,12 @@ GridPane {
 }
 
 .button,
-.text,
 .text-container {
     -fx-max-width: 1000px;
     -fx-max-height: 1000px;
+}
+
+.button {
     -fx-font-family: Monospaced;
     -fx-focus-traversable: false;
     -fx-font-size: 25px;
@@ -17,17 +19,19 @@ GridPane {
 .text-container {
     -fx-border-radius: 3px;
     -fx-border-color: gray;
-    /*-fx-border-width: 2px;*/
-    /*-fx-border-style: solid;*/
     -fx-border-style: solid;
     -fx-padding: 5px;
 }
 
 #numberText {
+    -fx-alignment: center-right;
+    -fx-font-family: Monospaced;
     -fx-font-size: 35px;
 }
 
 #expressionText {
+    -fx-alignment: center-right;
+    -fx-font-family: Monospaced;
     -fx-font-size: 20px;
 }
 

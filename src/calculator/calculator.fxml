@@ -53,13 +53,13 @@
     <Button text="C" onAction="#keyPressClear" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
 
     <AnchorPane styleClass="text-container" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="5">
-        <Text fx:id="numberText" textAlignment="RIGHT" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0"
-              AnchorPane.topAnchor="0"/>
+        <Label fx:id="numberText" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0"
+               AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"/>
         <Text fx:id="memoryIndicator" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" text="M"/>
     </AnchorPane>
     <AnchorPane styleClass="text-container" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="5">
-        <Text fx:id="expressionText" textAlignment="RIGHT" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0"
-              AnchorPane.topAnchor="0"/>
+        <Label fx:id="expressionText" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0"
+               AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"/>
     </AnchorPane>
 
 </GridPane>

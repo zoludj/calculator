@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
 import java.util.stream.Collectors;
@@ -17,8 +18,8 @@ public class CalculatorController {
     private final StringProperty currentDigits = new SimpleStringProperty("");
     private final ObservableList<Token> tokens = FXCollections.observableArrayList();
     private final StringProperty memory = new SimpleStringProperty();
-    public Text expressionText;
-    public Text numberText;
+    public Label expressionText;
+    public Label numberText;
     public Text memoryIndicator;
     private boolean showingResult;
 
@@ -192,7 +193,7 @@ public class CalculatorController {
         showingResult = true;
         try {
             String result = calculator.calculate(expr);
-            currentDigits.set(result);
+            currentDigits.set(format(result));
             System.out.println("result: " + result);
         } catch (Exception e) {
             e.printStackTrace(System.err);
