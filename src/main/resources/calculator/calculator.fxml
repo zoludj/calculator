@@ -2,7 +2,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 <?import java.net.URL?>
-<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="calculator.CalculatorController">
+<GridPane xmlns:fx="http://javafx.com/fxml" fx:id="root" fx:controller="calculator.CalculatorController"
+          onKeyPressed="#keyTyped">
     <stylesheets>
         <URL value="@styles.css"/>
     </stylesheets>

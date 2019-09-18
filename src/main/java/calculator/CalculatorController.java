@@ -8,6 +8,9 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 import java.util.stream.Collectors;
@@ -21,6 +24,7 @@ public class CalculatorController {
     public Label expressionText;
     public Label numberText;
     public Text memoryIndicator;
+    public GridPane root;
     private boolean showingResult;
 
     public void initialize() {
@@ -189,7 +193,7 @@ public class CalculatorController {
 
         String[] expr = tokens.stream().map(Token::getAlternativeValue).collect(Collectors.toList()).toArray(new String[tokens.size()]);
         System.out.print("expression: ");
-        System.out.println(String.join(" ", expr));
+        System.out.println(String.join(" " , expr));
         showingResult = true;
         try {
             String result = calculator.calculate(expr);
@@ -287,7 +291,7 @@ public class CalculatorController {
         if (mem == null || mem.isEmpty()) {
             mem = "0";
         }
-        mem = calculator.calculate(new String[]{mem, "+", digits});
+        mem = calculator.calculate(new String[]{mem, "+" , digits});
         memory.set(format(mem));
     }
 
@@ -320,6 +324,117 @@ public class CalculatorController {
 
     public void keyPressClear() {
         clear();
+    }
+
+    public void keyTyped(KeyEvent keyEvent) {
+        KeyCode code = keyEvent.getCode();
+        switch (code) {
+            case NUMPAD0:
+                keyPressZero();
+                break;
+            case DIGIT0:
+                if (keyEvent.isShiftDown()) keyPressClosedBracket();
+                else keyPressZero();
+                break;
+            case NUMPAD1:
+            case DIGIT1:
+                keyPressOne();
+                break;
+            case NUMPAD2:
+            case DIGIT2:
+                keyPressTwo();
+                break;
+            case NUMPAD3:
+            case DIGIT3:
+                keyPressThree();
+                break;
+            case NUMPAD4:
+            case DIGIT4:
+                keyPressFour();
+                break;
+            case NUMPAD5:
+            case DIGIT5:
+                keyPressFive();
+                break;
+            case NUMPAD6:
+            case DIGIT6:
+                keyPressSix();
+                break;
+            case NUMPAD7:
+            case DIGIT7:
+                keyPressSeven();
+                break;
+            case NUMPAD8:
+                keyPressEight();
+                break;
+            case DIGIT8:
+                if (keyEvent.isShiftDown()) keyPressMultiply();
+                else keyPressEight();
+                break;
+            case NUMPAD9:
+                keyPressNine();
+                break;
+            case DIGIT9:
+                if (keyEvent.isShiftDown()) keyPressOpenBracket();
+                else keyPressNine();
+                break;
+            case OPEN_BRACKET:
+                keyPressOpenBracket();
+                break;
+            case CLOSE_BRACKET:
+                keyPressClosedBracket();
+                break;
+            case MINUS:
+            case SUBTRACT:
+                keyPressMinus();
+                break;
+            case DIVIDE:
+            case SLASH:
+                keyPressDivide();
+                break;
+            case PLUS:
+            case ADD:
+                keyPressPlus();
+                break;
+            case MULTIPLY:
+                keyPressMultiply();
+                break;
+            case PERIOD:
+            case DECIMAL:
+                keyPressDot();
+                break;
+            case N:
+                keyPressNeg();
+                break;
+            case EQUALS:
+                if (keyEvent.isShiftDown()) keyPressPlus();
+                else keyPressResult();
+                break;
+            case ENTER:
+                keyPressResult();
+                break;
+            case M:
+                keyPressMemAdd();
+                break;
+            case R:
+                keyPressMemRead();
+                break;
+            case C:
+                keyPressMemClear();
+                break;
+            case BACK_SPACE:
+                keyPressBackspace();
+                break;
+            case ESCAPE:
+                keyPressClear();
+                break;
+            case SHIFT:
+                // just ignore
+                break;
+            default:
+                System.out.println("Not supported key: " + code);
+        }
+        keyEvent.consume();
     }
 
 
